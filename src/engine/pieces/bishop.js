@@ -7,7 +7,7 @@ export default class Bishop extends Piece {
     }
 
     getAvailableMoves(board) {
-        const location = board.findPiece(this)
+        const location = board.findPiece(this);
         const currentRow = location.row;
         const currentCol = location.col;
         const availableMoves = [];
