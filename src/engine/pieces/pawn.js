@@ -12,20 +12,20 @@ export default class Pawn extends Piece {
         let availableMoves = [];
         if (this.player === Player.WHITE) {
             availableMoves.push(Square.at(location.row + 1, location.col));
+
             // only for the first move 
             if (location.row === 1) {
                 availableMoves.push(Square.at(location.row + 2, location.col));
             }
-            // return Square.at(location.row + 1, location.col)
+
         } else {
             availableMoves.push(Square.at(location.row - 1, location.col));
-            // only for the first move 
 
+            // only for the first move 
             if (location.row === 6) {
                 availableMoves.push(Square.at(location.row - 2, location.col));
             }
-        }
-    // console.log({availableMoves});          
-    return availableMoves
+        }       
+    return availableMoves;
     }
 }
