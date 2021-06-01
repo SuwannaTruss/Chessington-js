@@ -8,8 +8,8 @@ export default class Pawn extends Piece {
     }
 
     getAvailableMoves(board) {
-        let location = board.findPiece(this)
-        let availableMoves = [];
+        const location = board.findPiece(this)
+        const availableMoves = [];
         if (this.player === Player.WHITE) {
             availableMoves.push(Square.at(location.row + 1, location.col));
 
