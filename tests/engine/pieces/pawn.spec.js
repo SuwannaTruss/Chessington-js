@@ -7,10 +7,10 @@ import Square from '../../../src/engine/square';
 
 describe('Pawn', () => {
 
-    describe('white pawns', () => {
+    let board;
+    beforeEach(() => board = new Board());
 
-        let board;
-        beforeEach(() => board = new Board());    
+    describe('white pawns', () => {
         
         it('can only move one square up if they have already moved', () => {
             const pawn = new Pawn(Player.WHITE);
@@ -56,10 +56,6 @@ describe('Pawn', () => {
             board.setPiece(Square.at(6, 7), pawn);
 
             const moves = pawn.getAvailableMoves(board);
-            
-            moves.should.have.length(1);
-            moves.should.deep.include(Square.at(4, 0));
-        });
 
             moves.should.have.length(2);
             moves.should.deep.include.members([Square.at(4, 7), Square.at(5, 7)]);
@@ -90,3 +86,4 @@ describe('Pawn', () => {
     });
 
 });
+
