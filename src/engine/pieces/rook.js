@@ -18,77 +18,35 @@ export default class Rook extends Piece {
         let stopDown = false;
 
         for (let i = 1; i < 8; i++) {
-            getNextAvailableMove(currentRow + i, currentCol, stopUp);
-            getNextAvailableMove(currentRow - i, currentCol, stopDown);
-            getNextAvailableMove(currentRow, currentCol + i, stopRight);
-            getNextAvailableMove(currentRow, currentCol - i, stopLeft);
+            getNextAvailableMove(currentRow + i, currentCol, stopUp, "up");
+            getNextAvailableMove(currentRow - i, currentCol, stopDown, "down");
+            getNextAvailableMove(currentRow, currentCol + i, stopRight, "right");
+            getNextAvailableMove(currentRow, currentCol - i, stopLeft, "left");
         }
 
-        function getNextAvailableMove(newRow, newCol, check) {
-            console.log(`${newRow}, ${newCol}, ${check}`);
-            debugger;
+        function getNextAvailableMove(newRow, newCol, check, direction) {
             if (newRow < 8 && newRow >= 0 && newCol < 8 && newCol >= 0 && !check) {
                 const nextMove = Square.at(newRow, newCol);
                 if (!board.getPiece(nextMove)) {
                     availableMoves.push(nextMove);
-                    console.log(availableMoves)
                 } else {
-                    check = true;
+                    switch (direction) {  // check = true doesn't work, we tried a lot!!
+                        case "up":
+                            stopUp = true;
+                            break;
+                        case "down":
+                            stopDown = true;
+                            break;
+                        case "right":
+                            stopRight = true;
+                            break;
+                        case "left":
+                            stopLeft = true;
+                            break;
+                    }
                 }
             }
-
         }
-
-        //     let newRow = currentRow - i;     
-        //     let newCol = currentCol;
-        //     let check = stopDown;    
-        //     if (newRow < 8 && newRow >= 0 && newCol < 8 && newCol >= 0 && !check) {
-        //         const nextMove = Square.at(newRow, newCol);
-        //         if (!board.getPiece(nextMove)) {
-        //             availableMoves.push(nextMove);
-        //         } else {
-        //             check = true;
-        //         }
-        //     }
-
-        //     let newRow = currentRow;     
-        //     let newCol = currentCol + i;
-        //     let check = stopRight;    
-        //     if (newRow < 8 && newRow >= 0 && newCol < 8 && newCol >= 0 && !check) {
-        //         const nextMove = Square.at(newRow, newCol);
-        //         if (!board.getPiece(nextMove)) {
-        //             availableMoves.push(nextMove);
-        //         } else {
-        //             check = true;
-        //         }
-        //     }
-
-
-        //     if (currentRow - i >= 0 && !stopDown) {
-        //         const nextMove = Square.at(currentRow - i, currentCol);
-        //         if (!board.getPiece(nextMove)) {
-        //             availableMoves.push(nextMove);
-        //         } else {
-        //             stopDown = true;
-        //         }
-        //     }
-        //     if (currentCol + i < 8 && !stopRight) {
-        //         const nextMove = Square.at(currentRow, currentCol + i);
-        //         if (!board.getPiece(nextMove)) {
-        //             availableMoves.push(nextMove);
-        //         } else {
-        //             stopRight = true;
-        //         }
-        //     }
-        //     if (currentCol - i >= 0 && !stopLeft) {
-        //         const nextMove = Square.at(currentRow, currentCol - i);
-        //         if (!board.getPiece(nextMove)) {
-        //             availableMoves.push(nextMove);
-        //         } else {
-        //             stopLeft = true;
-        //         }
-        //     }
-        // }
         return availableMoves;
     }
 }
