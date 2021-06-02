@@ -12,28 +12,20 @@ export default class Pawn extends Piece {
         const availableMoves = [];
 
         if (this.player === Player.WHITE) {
-
             const whiteNextMove = Square.at(location.row + 1, location.col);
-
-            if (typeof (board.getPiece(whiteNextMove)) !== "object") {
+            if (!board.getPiece(whiteNextMove)) {
                 availableMoves.push(whiteNextMove);
-                
-                // only for the first move 
                 const whiteNextMove2 = Square.at(location.row + 2, location.col);
-                if (location.row === 1 && typeof(board.getPiece(whiteNextMove2)) !== "object") {
+                if (location.row === 1 && !board.getPiece(whiteNextMove)) {
                     availableMoves.push(whiteNextMove2);
                 }
             }
-
         } else {
-            // Player.BLACK
             const blackNextMove = Square.at(location.row - 1, location.col);
-            if (typeof (board.getPiece(blackNextMove)) !== "object") {
+            if (!board.getPiece(blackNextMove)) {
                 availableMoves.push(blackNextMove);
-
-                // only for the first move
                 const blackNextMove2 = Square.at(location.row - 2, location.col); 
-                if (location.row === 6 && typeof(board.getPiece(blackNextMove2)) !== "object") {
+                if (location.row === 6 && !board.getPiece(blackNextMove2)) {
                     availableMoves.push(blackNextMove2);
                 }
             }

@@ -12,56 +12,20 @@ export default class Bishop extends Piece {
         const currentCol = location.col;
         const availableMoves = [];
 
-        // // Forwards diagonal
-        // const min = Math.min(currentRow, currentCol);
-        // const minForwardDiagonalRow = currentRow - min; 
-        // const minForwardDiagonalCol = currentCol - min; 
-        // let row = minForwardDiagonalRow;
-        // let col = minForwardDiagonalCol;
-        
-        // while (row < 7 || col < 7) {
-        //     if (row !== currentRow && col !== currentCol) {
-        //         availableMoves.push(Square.at(row, col))
-        //     }
-        //     row++;
-        //     col++;
-        // }
-
-        for (let i = 1; i < 8; i ++) {
-            if (currentRow + i < 8 && currentCol + i < 8){
+        for (let i = 1; i < 8; i++) {
+            if (currentRow + i < 8 && currentCol + i < 8) {
                 availableMoves.push(Square.at(currentRow + i, currentCol + i))
             }
-            if (currentRow - i >= 0 && currentCol + i < 8){
+            if (currentRow - i >= 0 && currentCol + i < 8) {
                 availableMoves.push(Square.at(currentRow - i, currentCol + i))
             }
-            if (currentRow + i < 8 && currentCol - i >= 0){
+            if (currentRow + i < 8 && currentCol - i >= 0) {
                 availableMoves.push(Square.at(currentRow + i, currentCol - i))
             }
-            if (currentRow - i >= 0 && currentCol - i >= 0){
+            if (currentRow - i >= 0 && currentCol - i >= 0) {
                 availableMoves.push(Square.at(currentRow - i, currentCol - i))
             }
         }
-
-        //Backwards diagonal
-        // row = currentRow;
-        // col = currentCol;        
-        // while (row >= 0 && col < 8 ) {
-        //     if (row !== currentRow && col !== currentCol) {
-        //         availableMoves.push(Square.at(row, col))
-        //     }
-        //     row--;
-        //     col++;
-        // }
-        // row = currentRow;
-        // col = currentCol;        
-        // while (row < 8 && col >= 0 ) {
-            
-        //     if (row !== currentRow && col !== currentCol) {
-        //         availableMoves.push(Square.at(row, col))
-        //     }
-        //     row++;
-        //     col--;
-        // }
         return availableMoves;
     }
 }
