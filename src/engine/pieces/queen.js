@@ -12,56 +12,35 @@ export default class Queen extends Piece {
         const currentRow = location.row;
         const currentCol = location.col;
 
-        //laterally - horizontal
-        for (let r = 0; r < 8; r++) {
-            if (currentRow !== r) {
-                availableMoves.push(Square.at(r, currentCol));
+        for (let i = 1; i < 8; i++) {
+            //lateral
+            if (currentRow + i < 8) {
+                availableMoves.push(Square.at(currentRow + i, currentCol));
             }
-        }
-        // Lateral vertical collumns
-        for (let c = 0; c < 8; c++) {
-            if (currentCol !== c) {
-                availableMoves.push(Square.at(currentRow, c));
+            if (currentRow - i >= 0) {
+                availableMoves.push(Square.at(currentRow - i, currentCol));
             }
-        }
+            if (currentCol + i < 8) {
+                availableMoves.push(Square.at(currentRow, currentCol + i));
+            }
+            if (currentCol - i >= 0) {
+                availableMoves.push(Square.at(currentRow, currentCol - i));
+            }
 
-        //Diagonal forwards
-        const min = Math.min(currentRow, currentCol);
-        const minForwardDiagonalRow = currentRow - min; 
-        const minForwardDiagonalCol = currentCol - min; 
-        let row = minForwardDiagonalRow;
-        let col = minForwardDiagonalCol;
-
-        while (row < 7 || col < 7) {
-            if (row !== currentRow && col !== currentCol) {
-                availableMoves.push(Square.at(row, col))
+            //Diagonal
+            if (currentRow + i < 8 && currentCol + i < 8) {
+                availableMoves.push(Square.at(currentRow + i, currentCol + i));
             }
-            row++;
-            col++;
-        }
-
-        //Backwards diagonal
-        row = currentRow;
-        col = currentCol;        
-        while (row >= 0 && col < 8 ) {
-            if (row !== currentRow && col !== currentCol) {
-                availableMoves.push(Square.at(row, col))
+            if (currentRow - i >= 0 && currentCol + i < 8) {
+                availableMoves.push(Square.at(currentRow - i, currentCol + i));
             }
-            row--;
-            col++;
-        }
-
-        row = currentRow;
-        col = currentCol;        
-        while (row < 8 && col >= 0 ) {
-            if (row !== currentRow && col !== currentCol) {
-                availableMoves.push(Square.at(row, col))
+            if (currentRow + i < 8 && currentCol - i >= 0) {
+                availableMoves.push(Square.at(currentRow + i, currentCol - i));
             }
-            row++;
-            col--;
+            if (currentRow - i >= 0 && currentCol - i >= 0) {
+                availableMoves.push(Square.at(currentRow - i, currentCol - i));
+            }
         }
         return availableMoves;
     }
-
-
 }
