@@ -5,12 +5,12 @@ export default class Piece {
         this.player = player;
     }
 
-    getNextAvailableMoves(board, directions) {
+    getNextAvailableMoves(board, directions, count) {
         const availableMoves = [];
         const location = board.findPiece(this);
 
         directions.forEach(direction => {
-            for (let i = 1; i < 8; i++) {
+            for (let i = 1; i < count; i++) {
                 const nextMove = Square.at(location.row + i * direction.x, location.col + i * direction.y);
                 if (nextMove.row < 8 && nextMove.row >= 0 && nextMove.col < 8 && nextMove.col >= 0) {
                     if (!board.getPiece(nextMove)) {
@@ -21,7 +21,7 @@ export default class Piece {
                 }
             }
         });
-        
+
         return availableMoves;
     }
 

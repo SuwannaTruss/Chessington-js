@@ -13,6 +13,6 @@ export default class Bishop extends Piece {
             new Direction(1, -1),
             new Direction(-1, 1)
         ]
-        return this.getNextAvailableMoves(board, directions);
+        return this.getNextAvailableMoves(board, directions, 8);
     }
 }

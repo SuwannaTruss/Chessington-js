@@ -1,5 +1,5 @@
 import Piece from './piece';
-import Square from '../square';
+import Direction from './direction';
 
 export default class Knight extends Piece {
     constructor(player) {
@@ -7,20 +7,16 @@ export default class Knight extends Piece {
     }
 
     getAvailableMoves(board) {
-        const location = board.findPiece(this);
-        const currentRow = location.row;
-        const currentCol = location.col;
-        const availableMoves = [];
-
-        availableMoves.push(Square.at(currentRow + 2, currentCol + 1));
-        availableMoves.push(Square.at(currentRow + 2, currentCol - 1));
-        availableMoves.push(Square.at(currentRow - 2, currentCol + 1));
-        availableMoves.push(Square.at(currentRow - 2, currentCol - 1));
-        availableMoves.push(Square.at(currentRow + 1, currentCol + 2));
-        availableMoves.push(Square.at(currentRow - 1, currentCol + 2));
-        availableMoves.push(Square.at(currentRow + 1, currentCol - 2));
-        availableMoves.push(Square.at(currentRow - 1, currentCol - 2));
-
-        return availableMoves;
+        const directions = [
+            new Direction(2, 1),
+            new Direction(2, -1),
+            new Direction(-2, 1),
+            new Direction(-2, -1),
+            new Direction(-1, 2),
+            new Direction(1, -2),
+            new Direction(-1, -2),
+            new Direction(1, 2)
+        ]
+        return this.getNextAvailableMoves(board, directions, 2);
     }
 }

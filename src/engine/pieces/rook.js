@@ -13,7 +13,7 @@ export default class Rook extends Piece {
             new Direction(0, 1),
             new Direction(0, -1)
         ]
-        return this.getNextAvailableMoves(board, directions);
+        return this.getNextAvailableMoves(board, directions, 8);
     }
 }
 
