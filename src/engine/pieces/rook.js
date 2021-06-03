@@ -11,6 +11,7 @@ export default class Rook extends Piece {
         const currentRow = location.row;
         const currentCol = location.col;
         const availableMoves = [];
+        
 
         let stopRight = false;
         let stopLeft = false;
