@@ -13,7 +13,10 @@ export default class Rook extends Piece {
             new Direction(0, 1),
             new Direction(0, -1)
         ]
-        return this.getNextAvailableMoves(board, directions, 8);
+        const result = this.getNextAvailableMoves(board, directions, 8);
+        console.log(result)
+        return result
+        // return this.getNextAvailableMoves(board, directions, 8);
     }
 }
 
