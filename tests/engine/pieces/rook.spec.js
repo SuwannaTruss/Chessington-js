@@ -53,7 +53,6 @@ describe('Rook', () => {
         board.setPiece(Square.at(4, 6), opposingPiece);
 
         const moves = rook.getAvailableMoves(board);
-
         moves.should.not.deep.include(Square.at(4, 7));
     });
 
